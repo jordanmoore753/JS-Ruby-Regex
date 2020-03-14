@@ -8,7 +8,12 @@ class App extends React.Component {
     options: '',
     strText: '',
     matchText: { __html: 'No results to show.' },
-    groupMatches: { __html: '<li>No group results.</li>' }
+    groupMatches: { __html: '<li>No group results.</li>' },
+    language: 'Ruby'
+  };
+
+  handleLangChange = (e) => {
+    this.setState({ language: e.target.value });
   };
 
   regexChange = (e) => {
@@ -28,8 +33,29 @@ class App extends React.Component {
   };
 
   groupChange = (data) => {
-    // const items; // array of groups, convert to list items
-    // this.setState({ groupMatches: items });
+    this.setState({ groupMatches: data });
+  };
+
+  fetchJavascript = (data) => {
+    let regex;
+
+    if (!data.opt.includes('g')) {
+      data.opt += 'g';
+    }
+
+    try {
+      regex = new RegExp(data.regex, data.opt);
+    } catch(error) {
+      this.matchChange({ __html: 'Invalid regex.'});
+      return this.groupChange({ __html: '<li>No group results.</li>'});
+    }
+
+    let results = Helper.matchJS(regex, data.string);
+    let element = Helper.createJSHighlight(results, regex, data.string);
+    let g = Helper.groupJS(results);
+
+    this.matchChange(element);
+    this.groupChange(g);   
   };
 
   fetchResults = (e) => {
@@ -40,6 +66,10 @@ class App extends React.Component {
       'string': this.state.strText,
       'opt': this.state.options
     };
+
+    if (this.state.language === 'JavaScript') {
+      return this.fetchJavascript(data);
+    }
 
     let self = this;
 
@@ -52,24 +82,35 @@ class App extends React.Component {
     })
     .then((response) => response.json())
     .then(function(json) {
-      let d = { o: data.opt, r: data.regex, s: data.string };
+      // ruby is handled, js must be now
+      if (Helper.isError(json)) {
+        self.matchChange({ __html: Helper.createErrorMsg(json) });
+        self.groupChange({ __html: '<li>No group results.</li>'});
+        return;
+      }
 
+      let d = { o: data.opt, r: data.regex, s: data.string };
       let n = Helper.createHighlightElement(json, d);
       let g = Helper.getGroups(json);
 
-      self.setState({ groupMatches: g });
-      self.setState({ matchText: n });
-      // handle successful response
+      self.matchChange(n);
+      self.groupChange(g);
     })
     .catch(function(error) {
-      console.log(error);
-      // handle error
+      self.matchChange({ __html: 'Error on the server side. Contact admin at: jordanmoore753@gmail.com.'});
+      self.groupChange({ __html: '<li>No group results.</li>'});
     });
   };
 
   render() {
+    const currLang = this.state.language;
+
     return (
       <div className="App">
+        <select value={currLang} onChange={this.handleLangChange}>
+            <option value="Ruby">Ruby</option>
+            <option value="JavaScript">JavaScript</option>
+        </select>
         <input 
           type="text"
           className="left-regex"
