@@ -11,3 +11,11 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
+
+.highlight {
+  background-color: cyan;
+}
+
+@media (min-width: 1200px) {
+
+}
