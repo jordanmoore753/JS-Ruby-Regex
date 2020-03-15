@@ -82,7 +82,6 @@ class App extends React.Component {
     })
     .then((response) => response.json())
     .then(function(json) {
-      // ruby is handled, js must be now
       if (Helper.isError(json)) {
         self.matchChange({ __html: Helper.createErrorMsg(json) });
         self.groupChange({ __html: '<li>No group results.</li>'});
@@ -114,6 +113,7 @@ class App extends React.Component {
         <input 
           type="text"
           className="left-regex"
+          title="Regex"
           value={this.state.regexText}
           onChange={this.regexChange}
           onBlur={this.fetchResults}
@@ -121,20 +121,22 @@ class App extends React.Component {
         <input
           type="text"
           className="right-regex"
+          title="Options"
           value={this.state.options}
           onChange={this.optionChange}
           onBlur={this.fetchResults}
         />
         <textarea
           className="string-text"
+          title="String"
           value={this.state.strText}
           onChange={this.textChange}
           onBlur={this.fetchResults}
         />
-        <section className="left-output">
-          <p dangerouslySetInnerHTML={this.state.matchText}/>
+        <section className="left-output" title="Match Output">
+          <p dangerouslySetInnerHTML={this.state.matchText} />
         </section>
-        <section className="right-output">
+        <section className="right-output" title="Group Output">
           <ul dangerouslySetInnerHTML={this.state.groupMatches} />
         </section>
       </div>
