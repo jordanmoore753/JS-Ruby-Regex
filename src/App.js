@@ -4,9 +4,9 @@ import Helper from './helpers';
 
 class App extends React.Component {
   state = {
-    regexText: '',
+    regexText: '(regex|goes|here)',
     options: '',
-    strText: '',
+    strText: 'String to match goes here.',
     matchText: { __html: 'No results to show.' },
     groupMatches: { __html: '<li>No group results.</li>' },
     language: 'Ruby'
@@ -108,22 +108,28 @@ class App extends React.Component {
             <option value="Ruby">Ruby</option>
             <option value="JavaScript">JavaScript</option>
         </select>
-        <input 
-          type="text"
-          className="left-regex"
-          title="Regex"
-          value={this.state.regexText}
-          onChange={this.regexChange}
-          onBlur={this.fetchResults}
-        />
-        <input
-          type="text"
-          className="right-regex"
-          title="Options"
-          value={this.state.options}
-          onChange={this.optionChange}
-          onBlur={this.fetchResults}
-        />
+        <div className="place-slash" data-placeholder='/'>
+          <p className="trans-slash-one">/</p>
+          <input 
+            type="text"
+            className="left-regex"
+            title="Regex"
+            value={this.state.regexText}
+            onChange={this.regexChange}
+            onBlur={this.fetchResults}
+          />
+        </div>
+        <div className="place-slash" data-placeholder='/'>
+          <p className="trans-slash-two">/</p>
+          <input
+            type="text"
+            className="right-regex"
+            title="Options"
+            value={this.state.options}
+            onChange={this.optionChange}
+            onBlur={this.fetchResults}
+          />
+        </div>
         <textarea
           className="string-text"
           title="String"

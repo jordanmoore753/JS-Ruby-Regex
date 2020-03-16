@@ -42,21 +42,47 @@ code {
   .left-regex {
     display: block;
     float: left;
-    width: 630px;
+    width: 640px;
     box-sizing: border-box;
     padding: 10px 0;
-    padding-left: 10px;
+    padding-left: 20px;
     margin: 20px 10px;
+    margin-right: 0px;
+    border-right: none;
   }
 
   .right-regex {
     display: block;
     float: right;
-    width: 50px;
+    width: 60px;
     box-sizing: border-box;
     padding: 10px 0;
-    padding-left: 5px;
-    margin: 20px 10px;
+    padding-left: 20px;
+    margin: 20px 10px 20px 0px;
+    margin-left: 0px;
+    border-left: none;
+  }
+
+  .trans-slash-one {
+    position: relative;
+    top: 30px;
+    left: 20px;
+    margin: 0;
+    padding: 0;
+    width: 0px;
+    height: 0px;
+    opacity: .5;
+  }
+
+  .trans-slash-two {
+    position: relative;
+    top: 30px;
+    left: 5px;
+    margin: 0;
+    padding: 0;
+    width: 0px;
+    height: 0px;
+    opacity: .5;
   }
 
   .string-text {
@@ -66,6 +92,7 @@ code {
     height: 150px;
     margin: 10px;
     resize: none;
+    padding: 10px;
   }
 
   .left-output {
