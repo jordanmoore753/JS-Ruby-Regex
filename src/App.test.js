@@ -1,6 +1,8 @@
 import React from 'react';
-import { render, fireEvent } from '@testing-library/react';
+import { cleanup, render, fireEvent, wait } from '@testing-library/react';
 import App from './App';
+
+afterEach(cleanup);
 
 // default render tests
 
@@ -87,7 +89,38 @@ test('select button values changes to JS and back to RB', () => {
   expect(getByDisplayValue('Ruby')).toBeInTheDocument();
   expect(queryByDisplayValue('JavaScript')).not.toBeInTheDocument();
 });
+
 // input change tests
+
+test('regex change is reflected in App', () => {
+  const { getByTitle } = render(<App />);
+  const regex = getByTitle('Regex'); 
+  expect(regex).toBeInTheDocument();
+  expect(regex.value).toBe('');
+
+  fireEvent.change(regex, { target: { value: 'abc' }});
+  expect(getByTitle('Regex').value).toBe('abc');
+});
+
+test('options change is reflected in App', () => {
+  const { getByTitle } = render(<App />);
+  const options = getByTitle('Options'); 
+  expect(options).toBeInTheDocument();
+  expect(options.value).toBe('');
+
+  fireEvent.change(options, { target: { value: 'ig' }});
+  expect(getByTitle('Options').value).toBe('ig');
+});
+
+test('textarea change is reflected in App', () => {
+  const { getByTitle } = render(<App />);
+  const text = getByTitle('String'); 
+  expect(text).toBeInTheDocument();
+  expect(text.value).toBe('');
+
+  fireEvent.change(text, { target: { value: 'abc' }});
+  expect(getByTitle('String').value).toBe('abc');
+});
 
 // blur event tests
 

@@ -88,11 +88,9 @@ class App extends React.Component {
         return;
       }
 
-      let d = { o: data.opt, r: data.regex, s: data.string };
-      let n = Helper.createHighlightElement(json, d);
-      let g = Helper.getGroups(json);
+      let g = Helper.getGroups(json.groups);
 
-      self.matchChange(n);
+      self.matchChange({ __html: json.match });
       self.groupChange(g);
     })
     .catch(function(error) {
@@ -134,7 +132,7 @@ class App extends React.Component {
           onBlur={this.fetchResults}
         />
         <section className="left-output" title="Match Output">
-          <p dangerouslySetInnerHTML={this.state.matchText} />
+          <p dangerouslySetInnerHTML={this.state.matchText} title="para"/>
         </section>
         <section className="right-output" title="Group Output">
           <ul dangerouslySetInnerHTML={this.state.groupMatches} />
