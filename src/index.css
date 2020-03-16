@@ -1,3 +1,23 @@
+/* width */
+::-webkit-scrollbar {
+  width: 10px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+  background: #f1f1f1; 
+}
+ 
+/* Handle */
+::-webkit-scrollbar-thumb {
+  background: #888; 
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+  background: #555; 
+}
+
 body {
   margin: 0;
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
@@ -7,6 +27,7 @@ body {
   -moz-osx-font-smoothing: grayscale;
   font-size: 16px;
   font-family: monospace;
+  background-color: #7880B5;
 }
 
 code {
@@ -15,12 +36,22 @@ code {
 }
 
 .highlight {
-  background-color: cyan;
+  background-color: #97cef1;
+}
+
+h1, h4 {
+  color: black;
+  text-align: center;
+}
+
+h1 {
+  margin-top: 100px;
+  font-size: 3rem;
 }
 
 @media (min-width: 1000px) {
   body, input, textarea, p {
-    font-size: 18px;
+    font-size: 16px;
   }
 
   .App {
@@ -28,8 +59,10 @@ code {
     width: 720px;
     margin: 0 auto;
     height: 500px;
-    margin-top: 200px;
-    background-color: #2e2e2e;
+    margin-top: 50px;
+    background-color: #BCC4DB;
+    box-shadow: 3px 4px #2e2e2e;
+    border-radius: 4px;
   }
 
   .lang-choice {
@@ -37,34 +70,41 @@ code {
     margin: 0 10px 5px 10px;
     position: relative;
     top: 12px;
+    padding: 3px 0;
   }
 
   .left-regex {
     display: block;
     float: left;
-    width: 640px;
+    width: 625px;
     box-sizing: border-box;
     padding: 10px 0;
     padding-left: 20px;
     margin: 20px 10px;
     margin-right: 0px;
     border-right: none;
+    letter-spacing: 1.5px;
   }
 
   .right-regex {
     display: block;
     float: right;
-    width: 60px;
+    width: 75px;
     box-sizing: border-box;
     padding: 10px 0;
-    padding-left: 20px;
+    padding-left: 15px;
     margin: 20px 10px 20px 0px;
     margin-left: 0px;
     border-left: none;
   }
 
+  input:focus {
+    outline: none;
+  }
+
   .trans-slash-one {
     position: relative;
+    font-size: 18px;
     top: 30px;
     left: 20px;
     margin: 0;
@@ -76,8 +116,9 @@ code {
 
   .trans-slash-two {
     position: relative;
+    font-size: 18px;
     top: 30px;
-    left: 5px;
+    left: 2px;
     margin: 0;
     padding: 0;
     width: 0px;
@@ -103,8 +144,9 @@ code {
     height: 150px;
     overflow: auto;
     box-sizing: border-box;
-    padding: 15px;
-    margin: 20px 10px;
+    padding: 4px 10px;
+    margin: 10px 10px;
+    letter-spacing: .5px;
   }
 
   .right-output {
@@ -113,9 +155,17 @@ code {
     float: right;
     width: 340px;
     height: 150px;
-    overflow: auto;
+    overflow-y: auto;
     box-sizing: border-box;
-    padding: 15px;
-    margin: 20px 10px;
+    margin: 10px 10px;
+  }
+
+  .right-output li {
+    list-style-type: square;
+  }
+
+  .dots {
+    text-align: center;
+    color: black;
   }
 }

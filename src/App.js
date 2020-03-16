@@ -4,9 +4,9 @@ import Helper from './helpers';
 
 class App extends React.Component {
   state = {
-    regexText: '(regex|goes|here)',
+    regexText: '(regex|string|String)',
     options: '',
-    strText: 'String to match goes here.',
+    strText: 'String to match.',
     matchText: { __html: 'No results to show.' },
     groupMatches: { __html: '<li>No group results.</li>' },
     language: 'Ruby'
@@ -128,6 +128,7 @@ class App extends React.Component {
             value={this.state.options}
             onChange={this.optionChange}
             onBlur={this.fetchResults}
+            maxLength='6'
           />
         </div>
         <textarea
@@ -137,8 +138,9 @@ class App extends React.Component {
           onChange={this.textChange}
           onBlur={this.fetchResults}
         />
+        <p className="dots">. . .</p>
         <section className="left-output" title="Match Output">
-          <p dangerouslySetInnerHTML={this.state.matchText} title="para"/>
+          <p dangerouslySetInnerHTML={this.state.matchText} className="output"/>
         </section>
         <section className="right-output" title="Group Output">
           <ul dangerouslySetInnerHTML={this.state.groupMatches} />
