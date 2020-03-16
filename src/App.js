@@ -104,7 +104,7 @@ class App extends React.Component {
 
     return (
       <div className="App">
-        <select value={currLang} onChange={this.handleLangChange}>
+        <select value={currLang} onChange={this.handleLangChange} className="lang-choice">
             <option value="Ruby">Ruby</option>
             <option value="JavaScript">JavaScript</option>
         </select>

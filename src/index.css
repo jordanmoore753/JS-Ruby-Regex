@@ -5,6 +5,8 @@ body {
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  font-size: 16px;
+  font-family: monospace;
 }
 
 code {
@@ -16,6 +18,77 @@ code {
   background-color: cyan;
 }
 
-@media (min-width: 1200px) {
+@media (min-width: 1000px) {
+  body, input, textarea, p {
+    font-size: 18px;
+  }
 
+  .App {
+    display: block;
+    width: 720px;
+    margin: 0 auto;
+    height: 500px;
+    margin-top: 200px;
+    background-color: #2e2e2e;
+  }
+
+  .lang-choice {
+    display: block;
+    margin: 0 10px 5px 10px;
+    position: relative;
+    top: 12px;
+  }
+
+  .left-regex {
+    display: block;
+    float: left;
+    width: 630px;
+    box-sizing: border-box;
+    padding: 10px 0;
+    padding-left: 10px;
+    margin: 20px 10px;
+  }
+
+  .right-regex {
+    display: block;
+    float: right;
+    width: 50px;
+    box-sizing: border-box;
+    padding: 10px 0;
+    padding-left: 5px;
+    margin: 20px 10px;
+  }
+
+  .string-text {
+    display: block;
+    box-sizing: border-box;
+    width: 97.5%;
+    height: 150px;
+    margin: 10px;
+    resize: none;
+  }
+
+  .left-output {
+    display: block;
+    background-color: white;
+    float: left;
+    width: 340px;
+    height: 150px;
+    overflow: auto;
+    box-sizing: border-box;
+    padding: 15px;
+    margin: 20px 10px;
+  }
+
+  .right-output {
+    display: block;
+    background-color: white;
+    float: right;
+    width: 340px;
+    height: 150px;
+    overflow: auto;
+    box-sizing: border-box;
+    padding: 15px;
+    margin: 20px 10px;
+  }
 }

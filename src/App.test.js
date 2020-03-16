@@ -1,6 +1,7 @@
 import React from 'react';
 import { cleanup, render, fireEvent, wait } from '@testing-library/react';
 import App from './App';
+import ShallowRenderer from 'react-test-renderer/shallow';
 
 afterEach(cleanup);
 
@@ -121,6 +122,3 @@ test('textarea change is reflected in App', () => {
   fireEvent.change(text, { target: { value: 'abc' }});
   expect(getByTitle('String').value).toBe('abc');
 });
-
-// blur event tests
-
