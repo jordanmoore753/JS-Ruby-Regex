@@ -57,6 +57,7 @@ h1 {
 }
 
 h4 {
+  margin-top: 8px;
   font-size: 1rem;
 }
 
@@ -87,6 +88,7 @@ input:focus {
   display: block;
   margin: 10px 10px 5px 10px;
   padding: 5px;
+  border-radius: 0px;
 }
 
 .lang-choice {
@@ -109,12 +111,12 @@ button {
 
 .left-regex {
   float: left;
-  width: 75%;
+  width: 73%;
   padding: 10px 0;
   margin-left: 2.3%;
   padding-left: 10px;
+  margin-right: 1%;
   letter-spacing: 1px;
-  border-right: none;
 }
 
 .right-regex {
@@ -122,10 +124,11 @@ button {
   width: 20%;
   padding: 10px 0;
   padding-left: 13px;
-  border-left: none;
+  margin-left: 1%;
 }
 
 .trans-slash-one, .trans-slash-two {
+  display: none;
   position: relative;
   font-size: 18px;
   margin: 0;
@@ -147,6 +150,7 @@ button {
 
 .string-text {
   display: block;
+  border-radius: 0px;
   margin: 0 auto;
   padding: 5px;
   box-sizing: border-box;
@@ -227,11 +231,13 @@ button {
   }
 
   .trans-slash-one {
+    display: block;
     top: 66px;
     left: -100px;
   }
 
   .trans-slash-two {
+    display: block;
     top: 66px;
     left: 2px;
   }
