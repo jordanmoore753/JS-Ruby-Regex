@@ -1,5 +1,4 @@
 import React from 'react';
-import logo from './logo.svg';
 import Helper from './helpers';
 
 class App extends React.Component {

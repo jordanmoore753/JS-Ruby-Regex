@@ -1,8 +1,5 @@
-import React from 'react';
-
 const helper = {
   createHighlightElement: function(data, reg) {
-    const keys = Object.keys(data);
     const o = reg.o + 'g';
     const r = reg.r;
     const s = reg.s;
@@ -44,7 +41,6 @@ const helper = {
       res.push([...s.matchAll(regex)]);
     });
 
-    let n = [];
     let obj = { match: [], groups: [] };
 
     res.forEach(function(sub) {
