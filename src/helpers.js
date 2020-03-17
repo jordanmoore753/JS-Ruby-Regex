@@ -13,30 +13,53 @@ const helper = {
   },
 
   createJSHighlight: function(data, reg, str) {
-    let s = str.replace(reg, `<span class='highlight'>$&</span>`);
-    return { __html: s };
+    let newStrings = [];
+
+    str.forEach(function(s) {
+      newStrings.push(s.replace(reg, `<span class='highlight'>$&</span>`));
+    });
+
+    let r;
+
+    newStrings = newStrings.map(function(s) {
+      if (s === '') {
+        return '<br>';
+      }
+
+      r = '<p>';
+      r += s + '</p>';
+      return r;
+    });
+
+    let res = '';
+
+    newStrings.forEach((p) => res += p);
+    return { __html: res };
   },
 
   matchJS: function(regex, str) {
-    let array = [...str.matchAll(regex)];
-    let n = [];
-    let obj;
+    let res = [];
 
-    array.forEach(function(sub) {
-      obj = { match: undefined, groups: [] };
-
-      sub.forEach(function(e, i) {
-        if (i === 0) {
-          obj.match = e;
-        } else {
-          obj.groups.push(e);
-        }
-      });
-      
-      n.push(obj);
+    str.forEach(function(s) {
+      res.push([...s.matchAll(regex)]);
     });
 
-    return n;
+    let n = [];
+    let obj = { match: [], groups: [] };
+
+    res.forEach(function(sub) {
+      sub.forEach(function(e) {
+        e.forEach(function(inn, i) {
+          if (i === 0) {
+            obj.match.push(inn);
+          } else {
+            obj.groups.push(inn);
+          }
+        });
+      });
+    });
+
+    return obj;
   },
 
   groupJS: function(data) {

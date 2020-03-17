@@ -6,7 +6,7 @@ import * as serviceWorker from './serviceWorker';
 
 ReactDOM.render(
   <div>
-    <h1>Regex.rb.js</h1>
+    <h1>Regexer</h1>
     <h4>the minimalist's regex editor for Ruby and JavaScript</h4>
     <App />
   </div>, 

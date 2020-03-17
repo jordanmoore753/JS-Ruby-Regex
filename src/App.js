@@ -6,9 +6,9 @@ class App extends React.Component {
   state = {
     regexText: '(regex|string|String)',
     options: '',
-    strText: 'String to match.',
-    matchText: { __html: 'No results to show.' },
-    groupMatches: { __html: '<li>No group results.</li>' },
+    strText: "String to match.\nstring.",
+    matchText: { __html: '<p>No matching results to show.</p>' },
+    groupMatches: { __html: '<li>No captured groups.</li>' },
     language: 'Ruby'
   };
 
@@ -46,13 +46,13 @@ class App extends React.Component {
     try {
       regex = new RegExp(data.regex, data.opt);
     } catch(error) {
-      this.matchChange({ __html: 'Invalid regex.'});
+      this.matchChange({ __html: '<p>Invalid regex.</p>'});
       return this.groupChange({ __html: '<li>No group results.</li>'});
     }
 
     let results = Helper.matchJS(regex, data.string);
     let element = Helper.createJSHighlight(results, regex, data.string);
-    let g = Helper.groupJS(results);
+    let g = Helper.makeLiJS(results.groups);
 
     this.matchChange(element);
     this.groupChange(g);   
@@ -63,7 +63,7 @@ class App extends React.Component {
 
     let data = {
       'regex': this.state.regexText,
-      'string': this.state.strText,
+      'string': this.state.strText.split('\n'),
       'opt': this.state.options
     };
 
@@ -84,13 +84,15 @@ class App extends React.Component {
     .then(function(json) {
       if (Helper.isError(json)) {
         self.matchChange({ __html: Helper.createErrorMsg(json) });
-        self.groupChange({ __html: '<li>No group results.</li>'});
+        self.groupChange({ __html: '<li>No captured groups.</li>'});
         return;
       }
 
+      let paragraphs = '';
       let g = Helper.getGroups(json.groups);
+      json.match.forEach((para) => paragraphs += para);
 
-      self.matchChange({ __html: json.match });
+      self.matchChange({ __html: paragraphs });
       self.groupChange(g);
     })
     .catch(function(error) {
@@ -139,9 +141,10 @@ class App extends React.Component {
           onBlur={this.fetchResults}
         />
         <p className="dots">. . .</p>
-        <section className="left-output" title="Match Output">
-          <p dangerouslySetInnerHTML={this.state.matchText} className="output"/>
-        </section>
+        <section 
+          className="left-output" 
+          title="Match Output" 
+          dangerouslySetInnerHTML={this.state.matchText} />
         <section className="right-output" title="Group Output">
           <ul dangerouslySetInnerHTML={this.state.groupMatches} />
         </section>
