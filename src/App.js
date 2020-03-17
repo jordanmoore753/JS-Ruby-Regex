@@ -5,7 +5,7 @@ class App extends React.Component {
   state = {
     regexText: '(regex|string|String)',
     options: '',
-    strText: "String to match.\nstring.",
+    strText: "String to match.",
     matchText: { __html: '<p>No matching results to show.</p>' },
     groupMatches: { __html: '<li>No captured groups.</li>' },
     language: 'Ruby'
@@ -119,7 +119,8 @@ class App extends React.Component {
           <button 
             type="click"
             value="Clear Fields"
-            onClick={this.handleClear}>
+            onClick={this.handleClear}
+            title="Clear Fields">
             Clear Fields
           </button>
         </div>

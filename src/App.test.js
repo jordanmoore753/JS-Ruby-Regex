@@ -26,7 +26,7 @@ test('renders regex input in App', () => {
   const { getByTitle } = render(<App />);
   const regex = getByTitle('Regex'); 
   expect(regex).toBeInTheDocument();
-  expect(regex.value).toBe('');
+  expect(regex.value).toBe("(regex|string|String)");
 });
 
 test('renders options input in App', () => {
@@ -40,7 +40,7 @@ test('renders string textarea in App', () => {
   const { getByTitle } = render(<App />);
   const textarea = getByTitle('String'); 
   expect(textarea).toBeInTheDocument();
-  expect(textarea.value).toBe('');
+  expect(textarea.value).toBe("String to match.");
 });
 
 test('renders sections for matches in App', () => {
@@ -53,10 +53,16 @@ test('renders sections for matches in App', () => {
 
 test('renders correct text for sections in App', () => {
   const { getByText } = render(<App />);
-  const s1 = getByText('No results to show.'); 
-  const s2 = getByText('No group results.');
+  const s1 = getByText('No matching results to show.'); 
+  const s2 = getByText('No captured groups.');
   expect(s1).toBeInTheDocument();
   expect(s2).toBeInTheDocument();
+});
+
+test('renders clear field button', () => {
+  const { getByTitle } = render(<App />);
+  const b = getByTitle('Clear Fields');
+  expect(b).toBeInTheDocument();
 });
 
 // select option change tests
@@ -97,7 +103,7 @@ test('regex change is reflected in App', () => {
   const { getByTitle } = render(<App />);
   const regex = getByTitle('Regex'); 
   expect(regex).toBeInTheDocument();
-  expect(regex.value).toBe('');
+  expect(regex.value).toBe("(regex|string|String)");
 
   fireEvent.change(regex, { target: { value: 'abc' }});
   expect(getByTitle('Regex').value).toBe('abc');
@@ -117,8 +123,40 @@ test('textarea change is reflected in App', () => {
   const { getByTitle } = render(<App />);
   const text = getByTitle('String'); 
   expect(text).toBeInTheDocument();
-  expect(text.value).toBe('');
+  expect(text.value).toBe("String to match.");
 
   fireEvent.change(text, { target: { value: 'abc' }});
   expect(getByTitle('String').value).toBe('abc');
+});
+
+// clear fields event
+
+test('clear field button clears regex, opt, and textarea', () => {
+  const { getByTitle, getByText } = render(<App />);
+  const clear = getByTitle('Clear Fields');
+  const r = getByTitle('Regex');
+  const o = getByTitle('Options');
+  const t = getByTitle('String');
+
+  fireEvent.click(clear);
+  expect(r.value).toBe('');
+  expect(o.value).toBe('');
+  expect(t.value).toBe('');
+});
+
+test('clear field button clears all with opt added', async () => {
+  const { getByTitle, getByText } = render(<App />);
+  const clear = getByTitle('Clear Fields');
+  const r = getByTitle('Regex');
+  const o = getByTitle('Options');
+  const t = getByTitle('String');
+
+  await fireEvent.change(o, { target: { value: 'i' }});
+  expect(o.value).toBe('i');
+
+  await fireEvent.click(clear);
+
+  expect(r.value).toBe('');
+  expect(o.value).toBe('');
+  expect(t.value).toBe(''); 
 });

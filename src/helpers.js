@@ -48,18 +48,6 @@ const helper = {
     return obj;
   },
 
-  groupJS: function(data) {
-    let res = [];
-
-    data.forEach(function(obj) {
-      obj.groups.forEach(function(group) {
-        res.push(group);
-      });
-    });
-
-    return this.makeLiJS(res);
-  },
-
   getGroups: function(data) {
     let res = [];
     let keys = Object.keys(data);
