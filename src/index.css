@@ -104,6 +104,7 @@ button {
   padding: 0;
   margin-bottom: 5px;
   outline: none;
+  border-radius: 0px;
 }
 
 .left-regex {
