@@ -35,6 +35,12 @@ class App extends React.Component {
     this.setState({ groupMatches: data });
   };
 
+  handleClear = (e) => {
+    this.setState({ regexText: '' });
+    this.setState({ strText: '' });
+    this.setState({ options: '' });
+  };
+
   fetchJavascript = (data) => {
     let regex;
 
@@ -105,10 +111,18 @@ class App extends React.Component {
 
     return (
       <div className="App">
-        <select value={currLang} onChange={this.handleLangChange} className="lang-choice">
+        <div className="clear-and-select">
+          <select value={currLang} onChange={this.handleLangChange} className="lang-choice">
             <option value="Ruby">Ruby</option>
             <option value="JavaScript">JavaScript</option>
-        </select>
+          </select>
+          <button 
+            type="click"
+            value="Clear Fields"
+            onClick={this.handleClear}>
+            Clear Fields
+          </button>
+        </div>
         <div className="place-slash" data-placeholder='/'>
           <p className="trans-slash-one">/</p>
           <input 

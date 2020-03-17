@@ -18,7 +18,7 @@
   background: #555; 
 }
 
-.left-regex, .right-regex, .string-text, .lang-choice {
+.left-regex, .right-regex, .string-text, .lang-choice, button {
   font-family: 'Sen', sans-serif;
   font-size: 15px;
 }
@@ -83,13 +83,18 @@ input:focus {
   border-radius: 4px;
 }
 
-.lang-choice {
+.lang-choice, button {
   display: block;
-  margin: 0 10px 5px 10px;
-  position: relative;
-  top: 10px;
-  padding: 3px 0; 
-  margin-bottom: 15px;
+  margin: 10px 10px 5px 10px;
+  padding: 5px;
+}
+
+.lang-choice {
+  float: left;
+}
+
+button {
+  float: right;
 }
 
 .left-regex, .right-regex {
@@ -98,6 +103,7 @@ input:focus {
   margin: 0;
   padding: 0;
   margin-bottom: 5px;
+  outline: none;
 }
 
 .left-regex {
@@ -107,6 +113,7 @@ input:focus {
   margin-left: 8px;
   padding-left: 10px;
   letter-spacing: 1px;
+  border-right: none;
 }
 
 .right-regex {
@@ -114,7 +121,8 @@ input:focus {
   width: 20%;
   padding: 10px 0;
   margin-right: 5px;
-  padding-left: 10px;
+  padding-left: 13px;
+  border-left: none;
 }
 
 .trans-slash-one, .trans-slash-two {
@@ -128,12 +136,12 @@ input:focus {
 }
 
 .trans-slash-one {
-  top: 10px;
-  left: 12px;
+  top: 56px;
+  left: -110px;
 }
 
 .trans-slash-two {
-  top: 10px;
+  top: 56px;
   left: 5px;
 }
 
@@ -181,6 +189,12 @@ input:focus {
     font-size: 1.1rem;
   }
 
+  .lang-choice, button {
+    display: block;
+    margin: 10px 10px 0px 10px;
+    padding: 5px;
+  }
+
   .App {
     width: 720px;
     height: 500px;
@@ -196,7 +210,7 @@ input:focus {
     width: 620px;
     padding: 10px 0;
     padding-left: 20px;
-    margin: 20px 10px;
+    margin: 10px 10px;
     margin-right: 0px;
     border-right: none;
     letter-spacing: 1.5px;
@@ -207,18 +221,18 @@ input:focus {
     box-sizing: border-box;
     padding: 10px 0;
     padding-left: 15px;
-    margin: 20px 10px 20px 0px;
+    margin: 10px 10px 20px 0px;
     margin-left: 0px;
     border-left: none;
   }
 
   .trans-slash-one {
-    top: 30px;
-    left: 20px;
+    top: 66px;
+    left: -100px;
   }
 
   .trans-slash-two {
-    top: 30px;
+    top: 66px;
     left: 2px;
   }
 

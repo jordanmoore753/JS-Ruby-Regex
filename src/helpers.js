@@ -1,14 +1,4 @@
 const helper = {
-  createHighlightElement: function(data, reg) {
-    const o = reg.o + 'g';
-    const r = reg.r;
-    const s = reg.s;
-    const regex = new RegExp(r, o);
-
-    let sHighlight = s.replace(regex, `<span class='highlight'>$&</span>`);
-    return { __html: sHighlight };
-  },
-
   createJSHighlight: function(data, reg, str) {
     let newStrings = [];
 
