@@ -76,7 +76,7 @@ input:focus {
 .App {
   display: block;
   margin: 0 auto;
-  width: 98%;
+  width: 95%;
   height: 510px;
   margin-top: 20px;
   background-color: #BCC4DB;
@@ -86,7 +86,7 @@ input:focus {
 
 .lang-choice, button {
   display: block;
-  margin: 10px 10px 5px 10px;
+  margin: 10px 10px 8px 10px;
   padding: 5px;
   border-radius: 0px;
 }
@@ -104,7 +104,7 @@ button {
   box-sizing: border-box;
   margin: 0;
   padding: 0;
-  margin-bottom: 5px;
+  margin-bottom: 8px;
   outline: none;
   border-radius: 0px;
 }
@@ -177,6 +177,11 @@ button {
   margin-top: 5px;
   overflow: auto;
   box-sizing: border-box;
+}
+
+.left-output {
+  padding-left: 25px;
+  margin-bottom: 8px;
 }
 
 @media (min-width: 1000px) {
